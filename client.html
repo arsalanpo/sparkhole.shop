@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client Panel | Spark Hole</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=JetBrains+Mono:wght@400;700&family=Poppins:wght@500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: #05050a;
+            color: #e2e8f0;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .font-inter { font-family: 'Inter', sans-serif; }
+        .font-mono { font-family: 'JetBrains Mono', monospace; }
+        .font-poppins { font-family: 'Poppins', sans-serif; }
+        
+        /* Spark Hole Logo Styling */
+        .spark-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #f59e0b 0%, #f97316 50%, #dc2626 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(245, 158, 11, 0.5);
+        }
+        
+        .spark-icon::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.2) 50%, transparent 70%);
+            animation: sparkle 3s infinite linear;
+        }
+        
+        @keyframes sparkle {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        
+        .hole-effect {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #000;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 2;
+        }
+        
+        /* Custom Styling */
+        .glass-panel {
+            background: rgba(10, 10, 20, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+        
+        .spark-gradient {
+            background: linear-gradient(135deg, #f59e0b 0%, #f97316 50%, #dc2626 100%);
+        }
+        
+        .spark-gradient-text {
+            background: linear-gradient(135deg, #f59e0b 0%, #f97316 50%, #dc2626 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        /* QR Code styling */
+        .qr-container {
+            background: linear-gradient(135deg, #f59e0b15 0%, #f9731615 50%, #dc262615 100%);
+            border: 2px solid rgba(245, 158, 11, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .qr-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #f59e0b, #f97316, #dc2626);
+        }
+        
+        /* Step number styling */
+        .step-number {
+            background: linear-gradient(135deg, #f59e0b 0%, #f97316 50%, #dc2626 100%);
+        }
+        
+        /* Animation */
+        @keyframes pulse-glow {
+            0%, 100% { 
+                box-shadow: 0 0 20px rgba(245, 158, 11, 0.3);
+            }
+            50% { 
+                box-shadow: 0 0 30px rgba(245, 158, 11, 0.6);
+            }
+        }
+        
+        .animate-pulse-glow {
+            animation: pulse-glow 2s infinite;
+        }
+    </style>
+</head>
+<body class="text-gray-200 font-inter flex flex-col min-h-screen">
+
+    <nav class="w-full h-20 flex items-center justify-between px-6 border-b border-white/5 bg-[#05050a]">
+        <div class="flex items-center gap-3 cursor-pointer" onclick="window.location.href='index.html'">
+            <div class="spark-icon">
+                <div class="hole-effect"></div>
+                <i class="fa-solid fa-bolt text-white text-lg relative z-3"></i>
+            </div>
+            <span class="font-poppins font-bold text-xl text-white">SPARK</span>
+            <span class="font-poppins font-bold text-xl spark-gradient-text">HOLE</span>
+        </div>
+        <div class="flex items-center gap-2 cursor-pointer hover:bg-white/5 px-3 py-2 rounded-lg transition" onclick="window.location.href='index.html'">
+            <i class="fa-solid fa-arrow-left text-gray-400 hover:text-amber-400"></i>
+            <span class="font-poppins font-medium text-gray-300 hover:text-white">Back to Home</span>
+        </div>
+    </nav>
+
+    <div class="flex-grow flex items-center justify-center p-4">
+        <div class="glass-panel max-w-4xl w-full rounded-2xl p-8 md:p-12 flex flex-col md:flex-row gap-12 items-center">
+            
+            <!-- QR Section -->
+            <div class="flex-1 flex flex-col items-center">
+                <div class="qr-container p-6 rounded-xl mb-6 animate-pulse-glow">
+                    <!-- Your QR Code Image -->
+                    <img src="image0.webp" alt="UPI QR Code" class="w-64 h-64 object-contain rounded-lg">
+                </div>
+                <h2 class="text-2xl font-bold text-white mb-2">Scan to Pay</h2>
+                <div class="flex gap-6 text-2xl text-gray-400 mt-2">
+                    <i class="fa-brands fa-google-pay hover:text-green-400 transition"></i>
+                    <i class="fa-solid fa-mobile-screen-button hover:text-blue-400 transition"></i>
+                    <i class="fa-solid fa-indian-rupee-sign hover:text-emerald-400 transition"></i>
+                    <i class="fa-brands fa-paypal hover:text-blue-500 transition"></i>
+                </div>
+                <p class="text-sm text-gray-500 mt-4 text-center">Accepting GPay, PhonePe, Paytm & All UPI Apps</p>
+                <div class="mt-4 p-3 bg-white/5 rounded-lg border border-white/10">
+                    <p class="text-sm text-amber-400 font-mono">UPI ID: 9149977246@fam</p>
+                    <p class="text-xs text-gray-400 mt-1 text-center">Wani Arsalan</p>
+                </div>
+            </div>
+
+            <!-- Instructions Section -->
+            <div class="flex-1 w-full">
+                <h1 class="text-3xl font-poppins font-bold text-white mb-6">Complete Your <span class="spark-gradient-text">Payment</span></h1>
+                
+                <div class="space-y-6">
+                    <div class="flex gap-4">
+                        <div class="step-number w-8 h-8 rounded-full flex items-center justify-center font-bold text-white shrink-0">1</div>
+                        <div>
+                            <h4 class="font-bold text-white">Scan & Pay</h4>
+                            <p class="text-sm text-gray-400">Scan the QR code and pay the exact amount for your chosen plan. Make sure to include the correct amount.</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="step-number w-8 h-8 rounded-full flex items-center justify-center font-bold text-white shrink-0">2</div>
+                        <div>
+                            <h4 class="font-bold text-white">Take a Screenshot</h4>
+                            <p class="text-sm text-gray-400">Capture the payment success screen showing the Transaction ID or UPI Reference Number.</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="step-number w-8 h-8 rounded-full flex items-center justify-center font-bold text-white shrink-0">3</div>
+                        <div>
+                            <h4 class="font-bold text-white">Submit Proof</h4>
+                            <p class="text-sm text-gray-400">Open a support ticket on our Discord server or click the button below to submit payment details.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-8 p-4 bg-amber-500/10 border border-amber-500/20 rounded-lg">
+                    <div class="flex items-start gap-3">
+                        <i class="fa-solid fa-clock text-amber-400 mt-1"></i>
+                        <div>
+                            <p class="text-amber-400 font-medium">Activation Time: 5 - 30 Minutes</p>
+                            <p class="text-gray-400 text-sm mt-1">After payment verification, your service will be activated promptly.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-8 space-y-4">
+                    <a href="https://discord.gg/2RNc52dmhJ" target="_blank" rel="noopener noreferrer">
+                        <button class="w-full spark-gradient text-white font-bold py-4 rounded-lg shadow-lg hover:opacity-90 transition-all transform hover:scale-[1.02]">
+                            <i class="fa-brands fa-discord mr-2"></i> Submit Proof on Discord
+                        </button>
+                    </a>
+                    
+                    <div class="text-center">
+                        <p class="text-gray-400 text-sm">Need help? Join our Discord server for support</p>
+                    </div>
+                </div>
+
+                <!-- Important Notes -->
+                <div class="mt-8 p-4 bg-red-500/10 border border-red-500/20 rounded-lg">
+                    <div class="flex items-start gap-3">
+                        <i class="fa-solid fa-circle-exclamation text-red-400 mt-1"></i>
+                        <div>
+                            <p class="text-red-400 font-medium">Important Notes:</p>
+                            <ul class="text-gray-400 text-sm mt-2 space-y-1">
+                                <li>• Include your Discord username and plan details when submitting proof</li>
+                                <li>• Keep the transaction screenshot ready</li>
+                                <li>• Activation begins only after payment verification</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Footer Note -->
+    <div class="py-6 text-center text-gray-500 text-sm border-t border-white/5">
+        <p>© 2025 Spark Hole. All rights reserved.</p>
+    </div>
+
+    <script>
+        // Simple animation for QR code container
+        document.addEventListener('DOMContentLoaded', function() {
+            const qrContainer = document.querySelector('.qr-container');
+            setInterval(() => {
+                qrContainer.classList.toggle('animate-pulse-glow');
+            }, 4000);
+        });
+    </script>
+</body>
+</html>
