@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spark Hole | Premium Hosting Solutions</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=JetBrains+Mono:wght@400;700&family=Poppins:wght@500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: #05050a;
+            color: #e2e8f0;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+        
+        .font-inter { font-family: 'Inter', sans-serif; }
+        .font-mono { font-family: 'JetBrains Mono', monospace; }
+        .font-poppins { font-family: 'Poppins', sans-serif; }
+        
+        /* Spark Hole Logo Styling */
+        .logo-spark {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .logo-spark-hole {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+        
+        .spark-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #f59e0b 0%, #f97316 50%, #dc2626 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(245, 158, 11, 0.5);
+        }
+        
+        .spark-icon::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.2) 50%, transparent 70%);
+            animation: sparkle 3s infinite linear;
+        }
+        
+        @keyframes sparkle {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        
+        .hole-effect {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #000;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 2;
+        }
+        
+        /* Custom Animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 10px rgba(245, 158, 11, 0.5); }
+            50% { box-shadow: 0 0 25px rgba(245, 158, 11, 0.8); }
+        }
+        
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .animate-fade-in-up {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+        
+        .animate-pulse-glow {
+            animation: pulse-glow 2s infinite;
+        }
+        
+        .delay-100 { animation-delay: 0.1s; }
+        .delay-200 { animation-delay: 0.2s; }
+        .delay-300 { animation-delay: 0.3s; }
+        
+        /* Custom Styling */
+        .glass-card {
+            background: rgba(10, 10, 20, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .glass-card:hover {
+            border-color: rgba(245, 158, 11, 0.3);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(245, 158, 11, 0.1);
+        }
+        
+        .spark-gradient {
+            background: linear-gradient(135deg, #f59e0b 0%, #f97316 50%, #dc2626 100%);
+        }
+        
+        .spark-gradient-text {
+            background: linear-gradient(135deg, #f59e0b 0%, #f97316 50%, #dc2626 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        /* Loading Screen */
+        #loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #05050a;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s, visibility 0.5s;
+        }
+        
+        #loader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+        
+        /* Navbar scroll effect */
+        .navbar-scrolled {
+            background: rgba(5, 5, 10, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        }
+    </style>
+</head>
+<body class="text-gray-200 font-inter overflow-x-hidden">
+
+    <!-- Loading Screen -->
+    <div id="loader">
+        <div class="text-center">
+            <div class="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-amber-500 mx-auto mb-6 shadow-[0_0_20px_rgba(245,158,11,0.5)]"></div>
+            <h2 class="text-2xl md:text-3xl font-poppins font-bold text-white tracking-widest animate-pulse">
+                IGNITING <span class="spark-gradient-text">SPARK HOLE</span>
+            </h2>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 top-0 transition-all duration-300" id="navbar">
+        <div class="absolute inset-0 bg-[#05050a]/80 backdrop-blur-md border-b border-white/5"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex-shrink-0 flex items-center gap-3 cursor-pointer group" onclick="window.location.href='index.html'">
+                    <div class="spark-icon group-hover:scale-110 transition-transform duration-300">
+                        <div class="hole-effect"></div>
+                        <i class="fa-solid fa-bolt text-white text-lg relative z-3"></i>
+                    </div>
+                    <div class="logo-spark-hole">
+                        <span class="font-poppins font-bold text-2xl tracking-tight text-white">SPARK</span>
+                        <span class="font-poppins font-bold text-2xl tracking-tight spark-gradient-text ml-1">HOLE</span>
+                    </div>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="index.html" class="text-white px-3 py-2 rounded-md text-sm font-medium border-b-2 border-amber-500">Home</a>
+                        <a href="minecraft.html" class="text-gray-300 hover:text-amber-400 px-3 py-2 rounded-md text-sm font-medium transition-colors">Minecraft</a>
+                        <a href="vps.html" class="text-gray-300 hover:text-orange-400 px-3 py-2 rounded-md text-sm font-medium transition-colors">VPS</a>
+                        <a href="services.html" class="text-gray-300 hover:text-red-400 px-3 py-2 rounded-md text-sm font-medium transition-colors">Services</a>
+                        <a href="payment.html" class="bg-white text-black px-6 py-2.5 rounded-full font-bold shadow-[0_0_20px_rgba(255,255,255,0.3)] hover:shadow-[0_0_30px_rgba(245,158,11,0.6)] hover:scale-105 transition-all">Client Area</a>
+                    </div>
+                </div>
+                <div class="md:hidden">
+                    <button type="button" onclick="toggleMenu()" class="text-gray-300 hover:text-white focus:outline-none">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div class="md:hidden hidden bg-[#0a0a14] border-b border-white/10" id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="index.html" class="text-white block px-3 py-2 rounded-md text-base font-medium">Home</a>
+                <a href="minecraft.html" class="text-gray-300 block px-3 py-2 rounded-md text-base font-medium">Minecraft</a>
+                <a href="vps.html" class="text-gray-300 block px-3 py-2 rounded-md text-base font-medium">VPS</a>
+                <a href="services.html" class="text-gray-300 block px-3 py-2 rounded-md text-base font-medium">Services</a>
+                <a href="payment.html" class="text-amber-400 block px-3 py-2 rounded-md text-base font-bold">Client Area</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
+        <!-- Background Glows -->
+        <div class="absolute top-0 left-1/4 w-[500px] h-[500px] bg-amber-600/10 rounded-full blur-[120px] pointer-events-none animate-float"></div>
+        <div class="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-orange-600/10 rounded-full blur-[120px] pointer-events-none animate-float" style="animation-delay: 2s"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 mb-8 rounded-full border border-amber-500/30 bg-amber-500/10 text-amber-300 text-sm font-mono animate-fade-in-up backdrop-blur-md">
+                <span class="relative flex h-2 w-2">
+                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
+                  <span class="relative inline-flex rounded-full h-2 w-2 bg-amber-500"></span>
+                </span>
+                Premium Hosting Solutions
+            </div>
+            <h1 class="text-5xl md:text-7xl font-poppins font-black text-white mb-6 tracking-tight leading-tight animate-fade-in-up delay-100 drop-shadow-2xl">
+                IGNITE YOUR <br>
+                <span class="spark-gradient-text">SERVER PERFORMANCE</span>
+            </h1>
+            <p class="mt-4 max-w-2xl mx-auto text-xl text-gray-400 animate-fade-in-up delay-200">
+                Enterprise-grade infrastructure with blazing-fast speeds.
+                <span class="text-white font-semibold">Zero lag. 99.9% Uptime. 24/7 Support.</span>
+            </p>
+            <div class="mt-10 flex justify-center gap-4 animate-fade-in-up delay-300 flex-wrap">
+                <a href="minecraft.html" class="px-8 py-4 spark-gradient hover:opacity-90 text-white font-bold rounded-xl shadow-lg shadow-amber-500/30 transition-all hover:scale-105 flex items-center gap-3">
+                    <i class="fa-solid fa-cube animate-bounce"></i>
+                    View Minecraft Plans
+                </a>
+                <a href="vps.html" class="px-8 py-4 bg-white/5 border border-white/10 hover:bg-white/10 backdrop-blur-md text-white font-bold rounded-xl transition-all hover:scale-105 flex items-center gap-3">
+                    <i class="fa-solid fa-server text-orange-400"></i> Explore VPS
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Features Grid -->
+    <section class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-poppins font-bold text-white">Why Choose <span class="spark-gradient-text">Spark Hole?</span></h2>
+                <p class="text-gray-400 mt-4 max-w-2xl mx-auto">We provide the perfect combination of power, reliability, and support for your hosting needs.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="glass-card p-8 rounded-2xl group">
+                    <div class="w-16 h-16 bg-gradient-to-br from-amber-500/20 to-orange-500/20 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 border border-amber-500/20">
+                        <i class="fa-solid fa-bolt text-amber-400 text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Blazing Fast Performance</h3>
+                    <p class="text-gray-400">Powered by the latest AMD Ryzen and Intel Core processors with NVMe Gen4 SSDs for instant load times and smooth gameplay.</p>
+                </div>
+                <div class="glass-card p-8 rounded-2xl group">
+                    <div class="w-16 h-16 bg-gradient-to-br from-red-500/20 to-pink-500/20 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 border border-red-500/20">
+                        <i class="fa-solid fa-shield-halved text-red-400 text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Advanced DDoS Protection</h3>
+                    <p class="text-gray-400">Our advanced mitigation filters malicious traffic instantly, keeping your server online through any attack with Tbps+ capacity.</p>
+                </div>
+                <div class="glass-card p-8 rounded-2xl group">
+                    <div class="w-16 h-16 bg-gradient-to-br from-green-500/20 to-emerald-500/20 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 border border-green-500/20">
+                        <i class="fa-solid fa-headset text-green-400 text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">24/7 Expert Support</h3>
+                    <p class="text-gray-400">Our support team consists of system admins and developers ready to help you at any hour with fast response times.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Links -->
+    <section class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl md:text-4xl font-poppins font-bold text-white text-center mb-12">Our <span class="spark-gradient-text">Services</span></h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <a href="minecraft.html" class="group relative overflow-hidden rounded-2xl aspect-[4/3] border border-white/10 hover:border-amber-500/50 transition-all shadow-lg">
+                    <div class="absolute inset-0 bg-gradient-to-br from-gray-900 to-[#1c1917] group-hover:scale-110 transition-transform duration-700"></div>
+                    <div class="absolute inset-0 flex items-center justify-center opacity-10 group-hover:opacity-20 transition-opacity">
+                        <i class="fa-solid fa-cube text-9xl text-amber-500"></i>
+                    </div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent p-6 flex flex-col justify-end">
+                        <h3 class="text-2xl font-bold text-white group-hover:text-amber-400 transition transform translate-y-2 group-hover:translate-y-0">Minecraft Hosting</h3>
+                        <p class="text-sm text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300">Optimized for performance</p>
+                    </div>
+                </a>
+                <a href="vps.html" class="group relative overflow-hidden rounded-2xl aspect-[4/3] border border-white/10 hover:border-orange-500/50 transition-all shadow-lg">
+                     <div class="absolute inset-0 bg-gradient-to-br from-gray-900 to-[#431407] group-hover:scale-110 transition-transform duration-700"></div>
+                     <div class="absolute inset-0 flex items-center justify-center opacity-10 group-hover:opacity-20 transition-opacity">
+                        <i class="fa-solid fa-server text-9xl text-orange-500"></i>
+                    </div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent p-6 flex flex-col justify-end">
+                        <h3 class="text-2xl font-bold text-white group-hover:text-orange-400 transition transform translate-y-2 group-hover:translate-y-0">VPS Hosting</h3>
+                        <p class="text-sm text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300">Full Root Access</p>
+                    </div>
+                </a>
+                <a href="services.html#web" class="group relative overflow-hidden rounded-2xl aspect-[4/3] border border-white/10 hover:border-blue-500/50 transition-all shadow-lg">
+                     <div class="absolute inset-0 bg-gradient-to-br from-gray-900 to-[#0c4a6e] group-hover:scale-110 transition-transform duration-700"></div>
+                     <div class="absolute inset-0 flex items-center justify-center opacity-10 group-hover:opacity-20 transition-opacity">
+                        <i class="fa-solid fa-globe text-9xl text-blue-500"></i>
+                    </div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent p-6 flex flex-col justify-end">
+                        <h3 class="text-2xl font-bold text-white group-hover:text-blue-400 transition transform translate-y-2 group-hover:translate-y-0">Web Hosting</h3>
+                        <p class="text-sm text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300">Fast & Secure</p>
+                    </div>
+                </a>
+                <a href="services.html#bot" class="group relative overflow-hidden rounded-2xl aspect-[4/3] border border-white/10 hover:border-green-500/50 transition-all shadow-lg">
+                     <div class="absolute inset-0 bg-gradient-to-br from-gray-900 to-[#064e3b] group-hover:scale-110 transition-transform duration-700"></div>
+                     <div class="absolute inset-0 flex items-center justify-center opacity-10 group-hover:opacity-20 transition-opacity">
+                        <i class="fa-brands fa-discord text-9xl text-green-500"></i>
+                    </div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent p-6 flex flex-col justify-end">
+                        <h3 class="text-2xl font-bold text-white group-hover:text-green-400 transition transform translate-y-2 group-hover:translate-y-0">Bot Hosting</h3>
+                        <p class="text-sm text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300">24/7 Discord Bots</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-20 bg-gradient-to-b from-transparent to-[#0a0a14]/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-poppins font-bold text-white">What Our <span class="spark-gradient-text">Clients Say</span></h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="glass-card p-6 rounded-2xl">
+                    <div class="flex items-center mb-4">
+                        <div class="w-10 h-10 rounded-full bg-gradient-to-r from-amber-500 to-orange-500 flex items-center justify-center text-white font-bold mr-3">JD</div>
+                        <div>
+                            <h4 class="font-bold text-white">John D.</h4>
+                            <div class="flex text-amber-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 italic">"My Minecraft server has never run smoother. The performance is incredible and support helped me migrate from my old host in minutes."</p>
+                </div>
+                <div class="glass-card p-6 rounded-2xl">
+                    <div class="flex items-center mb-4">
+                        <div class="w-10 h-10 rounded-full bg-gradient-to-r from-red-500 to-pink-500 flex items-center justify-center text-white font-bold mr-3">SA</div>
+                        <div>
+                            <h4 class="font-bold text-white">Sarah A.</h4>
+                            <div class="flex text-amber-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 italic">"The DDoS protection saved my community during a major attack. While competitors went down, my server stayed online without a hiccup."</p>
+                </div>
+                <div class="glass-card p-6 rounded-2xl">
+                    <div class="flex items-center mb-4">
+                        <div class="w-10 h-10 rounded-full bg-gradient-to-r from-blue-500 to-cyan-500 flex items-center justify-center text-white font-bold mr-3">MR</div>
+                        <div>
+                            <h4 class="font-bold text-white">Mike R.</h4>
+                            <div class="flex text-amber-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 italic">"As a developer, I need reliable VPS hosting. Spark Hole provides exactly that with excellent hardware and responsive support team."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[#020205] border-t border-white/5 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="col-span-1 md:col-span-2">
+                    <div class="flex items-center gap-2 mb-4">
+                        <div class="spark-icon animate-pulse-glow">
+                            <div class="hole-effect"></div>
+                            <i class="fa-solid fa-bolt text-white text-lg relative z-3"></i>
+                        </div>
+                        <div class="logo-spark-hole">
+                            <span class="font-poppins font-bold text-xl text-white">SPARK</span>
+                            <span class="font-poppins font-bold text-xl spark-gradient-text ml-1">HOLE</span>
+                        </div>
+                    </div>
+                    <p class="text-gray-400 text-sm max-w-sm leading-relaxed">
+                        Premium hosting services with blazing-fast performance and reliable infrastructure.
+                        We provide enterprise-grade solutions at competitive prices with 24/7 expert support.
+                    </p>
+                    <div class="flex gap-4 mt-6">
+                        <a href="#" class="text-gray-400 hover:text-amber-400 transition"><i class="fa-brands fa-discord text-xl"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-amber-400 transition"><i class="fa-brands fa-twitter text-xl"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-amber-400 transition"><i class="fa-brands fa-instagram text-xl"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Services</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="minecraft.html" class="hover:text-amber-400 transition">Minecraft Hosting</a></li>
+                        <li><a href="vps.html" class="hover:text-amber-400 transition">VPS Hosting</a></li>
+                        <li><a href="services.html#web" class="hover:text-amber-400 transition">Web Hosting</a></li>
+                        <li><a href="services.html#domains" class="hover:text-amber-400 transition">Domain Registration</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Company</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="payment.html" class="hover:text-amber-400 transition">Client Area</a></li>
+                        <li><a href="services.html#invites" class="hover:text-amber-400 transition">Referral Program</a></li>
+                        <li><a href="#" class="hover:text-amber-400 transition">Terms of Service</a></li>
+                        <li><a href="#" class="hover:text-amber-400 transition">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-12 pt-8 border-t border-white/5 text-center text-gray-500 text-sm">
+                &copy; 2025 Spark Hole. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Loading Screen
+        window.addEventListener('load', function() {
+            const loader = document.getElementById('loader');
+            setTimeout(() => {
+                loader.classList.add('hidden');
+            }, 1000);
+        });
+
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('navbar-scrolled');
+            } else {
+                navbar.classList.remove('navbar-scrolled');
+            }
+        });
+
+        // Mobile Menu Toggle
+        function toggleMenu() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        }
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const mobileMenu = document.getElementById('mobile-menu');
+            const menuButton = document.querySelector('[onclick="toggleMenu()"]');
+            
+            if (!mobileMenu.contains(event.target) && !menuButton.contains(event.target)) {
+                mobileMenu.classList.add('hidden');
+            }
+        });
+    </script>
+</body>
+</html>
