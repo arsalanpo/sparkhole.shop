@@ -3,38 +3,182 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Services | Legend Nodes</title>
+    <title>Services | Spark Hole</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=JetBrains+Mono:wght@400;700&family=Poppins:wght@500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="styles.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: #05050a;
+            color: #e2e8f0;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .font-inter { font-family: 'Inter', sans-serif; }
+        .font-mono { font-family: 'JetBrains Mono', monospace; }
+        .font-poppins { font-family: 'Poppins', sans-serif; }
+        
+        /* Spark Hole Logo Styling */
+        .spark-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #f59e0b 0%, #f97316 50%, #dc2626 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(245, 158, 11, 0.5);
+        }
+        
+        .spark-icon::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.2) 50%, transparent 70%);
+            animation: sparkle 3s infinite linear;
+        }
+        
+        @keyframes sparkle {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        
+        .hole-effect {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #000;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 2;
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .animate-fade-in-up {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+        
+        /* Custom Styling */
+        .glass-card {
+            background: rgba(10, 10, 20, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .glass-card:hover {
+            border-color: rgba(245, 158, 11, 0.3);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(245, 158, 11, 0.1);
+        }
+        
+        .glass-panel {
+            background: rgba(10, 10, 20, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .spark-gradient {
+            background: linear-gradient(135deg, #f59e0b 0%, #f97316 50%, #dc2626 100%);
+        }
+        
+        .spark-gradient-text {
+            background: linear-gradient(135deg, #f59e0b 0%, #f97316 50%, #dc2626 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        /* Loading Screen */
+        #loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #05050a;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s, visibility 0.5s;
+        }
+        
+        #loader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+        
+        /* Discount Badge */
+        .discount-badge {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: linear-gradient(135deg, #f59e0b 0%, #dc2626 100%);
+            color: white;
+            font-size: 0.75rem;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-weight: bold;
+            z-index: 10;
+        }
+    </style>
 </head>
 <body class="text-gray-200 font-inter">
     
     <!-- Loading Screen -->
     <div id="loader">
         <div class="text-center">
-            <div class="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-cyan-500 mx-auto mb-6 shadow-[0_0_20px_rgba(6,182,212,0.5)]"></div>
+            <div class="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-amber-500 mx-auto mb-6 shadow-[0_0_20px_rgba(245,158,11,0.5)]"></div>
             <h2 class="text-2xl md:text-3xl font-poppins font-bold text-white tracking-widest animate-pulse">
-                SEEKING YOU INTO <span class="text-cyan-400">LEGEND NODEZ</span>
+                IGNITING <span class="spark-gradient-text">SPARK HOLE</span>
             </h2>
         </div>
     </div>
 
+    <!-- Navigation -->
     <nav class="fixed w-full z-50 top-0 bg-[#05050a]/90 backdrop-blur-md border-b border-white/5">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-20">
                 <div class="flex-shrink-0 flex items-center gap-2 cursor-pointer" onclick="window.location.href='index.html'">
-                    <i class="fa-solid fa-server text-cyan-400 text-2xl"></i>
-                    <span class="font-poppins font-bold text-2xl text-white">LEGEND <span class="text-cyan-400">NODES</span></span>
+                    <div class="spark-icon">
+                        <div class="hole-effect"></div>
+                        <i class="fa-solid fa-bolt text-white text-lg relative z-3"></i>
+                    </div>
+                    <div class="flex items-center">
+                        <span class="font-poppins font-bold text-2xl text-white">SPARK</span>
+                        <span class="font-poppins font-bold text-2xl spark-gradient-text ml-1">HOLE</span>
+                    </div>
                 </div>
                 <div class="hidden md:block">
                     <div class="ml-10 flex items-baseline space-x-8">
                         <a href="index.html" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Home</a>
-                        <a href="minecraft.html" class="text-gray-300 hover:text-cyan-400 px-3 py-2 rounded-md text-sm font-medium">Minecraft</a>
-                        <a href="vps.html" class="text-gray-300 hover:text-purple-400 px-3 py-2 rounded-md text-sm font-medium">VPS</a>
-                        <a href="services.html" class="text-green-400 px-3 py-2 rounded-md text-sm font-medium border-b border-green-400">Services</a>
-                        <a href="payment.html" class="bg-white text-black px-4 py-2 rounded-full font-bold hover:scale-105 transition">Client Panel</a>
+                        <a href="minecraft.html" class="text-gray-300 hover:text-amber-400 px-3 py-2 rounded-md text-sm font-medium">Minecraft</a>
+                        <a href="vps.html" class="text-gray-300 hover:text-orange-400 px-3 py-2 rounded-md text-sm font-medium">VPS</a>
+                        <a href="services.html" class="text-red-400 px-3 py-2 rounded-md text-sm font-medium border-b border-red-400">Services</a>
+                        <a href="client.html" class="bg-white text-black px-4 py-2 rounded-full font-bold hover:scale-105 transition">Client Area</a>
                     </div>
                 </div>
             </div>
@@ -49,31 +193,51 @@
             <div class="text-center mb-10">
                 <h2 class="text-3xl font-poppins font-bold text-white"><i class="fa-solid fa-globe text-blue-400 mr-2"></i> Web Hosting</h2>
                 <p class="text-gray-400">Secure hosting for your digital presence.</p>
+                <div class="inline-flex items-center gap-1 px-3 py-1 mt-2 rounded-full bg-green-500/20 text-green-400 text-sm">
+                    <i class="fas fa-tag"></i>
+                    <span>20% OFF</span>
+                </div>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
-                <div class="glass-card p-6 rounded-xl hover:border-blue-400 transition">
+                <div class="glass-card p-6 rounded-xl hover:border-blue-400 transition relative">
+                    <span class="discount-badge">20% OFF</span>
                     <h3 class="font-bold text-white">Basic</h3>
-                    <div class="text-2xl font-mono text-blue-400 my-2">₹100<span class="text-sm text-gray-500">/mo</span></div>
+                    <div class="flex items-baseline gap-2">
+                        <div class="text-2xl font-mono text-blue-400 my-2">₹80<span class="text-sm text-gray-500">/mo</span></div>
+                        <span class="text-sm text-gray-500 line-through">₹100</span>
+                    </div>
                     <p class="text-sm text-gray-400">1 Website • 5GB NVMe</p>
-                    <a href="payment.html" class="mt-4 block text-center bg-blue-600/20 text-blue-400 py-2 rounded font-bold">Order</a>
+                    <a href="client.html" class="mt-4 block text-center bg-blue-600/20 text-blue-400 py-2 rounded font-bold hover:bg-blue-600/30 transition">Order</a>
                 </div>
-                <div class="glass-card p-6 rounded-xl hover:border-blue-400 transition">
+                <div class="glass-card p-6 rounded-xl hover:border-blue-400 transition relative">
+                    <span class="discount-badge">20% OFF</span>
                     <h3 class="font-bold text-white">Advanced</h3>
-                    <div class="text-2xl font-mono text-blue-400 my-2">₹200<span class="text-sm text-gray-500">/mo</span></div>
+                    <div class="flex items-baseline gap-2">
+                        <div class="text-2xl font-mono text-blue-400 my-2">₹160<span class="text-sm text-gray-500">/mo</span></div>
+                        <span class="text-sm text-gray-500 line-through">₹200</span>
+                    </div>
                     <p class="text-sm text-gray-400">Business Ready • 16GB Storage</p>
-                    <a href="payment.html" class="mt-4 block text-center bg-blue-600/20 text-blue-400 py-2 rounded font-bold">Order</a>
+                    <a href="client.html" class="mt-4 block text-center bg-blue-600/20 text-blue-400 py-2 rounded font-bold hover:bg-blue-600/30 transition">Order</a>
                 </div>
-                <div class="glass-card p-6 rounded-xl hover:border-blue-400 transition">
+                <div class="glass-card p-6 rounded-xl hover:border-blue-400 transition relative">
+                    <span class="discount-badge">20% OFF</span>
                     <h3 class="font-bold text-white">Performance</h3>
-                    <div class="text-2xl font-mono text-blue-400 my-2">₹340<span class="text-sm text-gray-500">/mo</span></div>
+                    <div class="flex items-baseline gap-2">
+                        <div class="text-2xl font-mono text-blue-400 my-2">₹272<span class="text-sm text-gray-500">/mo</span></div>
+                        <span class="text-sm text-gray-500 line-through">₹340</span>
+                    </div>
                     <p class="text-sm text-gray-400">High Traffic • 24GB Storage</p>
-                    <a href="payment.html" class="mt-4 block text-center bg-blue-600/20 text-blue-400 py-2 rounded font-bold">Order</a>
+                    <a href="client.html" class="mt-4 block text-center bg-blue-600/20 text-blue-400 py-2 rounded font-bold hover:bg-blue-600/30 transition">Order</a>
                 </div>
-                <div class="glass-card p-6 rounded-xl hover:border-blue-400 transition">
+                <div class="glass-card p-6 rounded-xl hover:border-blue-400 transition relative">
+                    <span class="discount-badge">20% OFF</span>
                     <h3 class="font-bold text-white">Ultimate</h3>
-                    <div class="text-2xl font-mono text-blue-400 my-2">₹660<span class="text-sm text-gray-500">/mo</span></div>
+                    <div class="flex items-baseline gap-2">
+                        <div class="text-2xl font-mono text-blue-400 my-2">₹528<span class="text-sm text-gray-500">/mo</span></div>
+                        <span class="text-sm text-gray-500 line-through">₹660</span>
+                    </div>
                     <p class="text-sm text-gray-400">E-Commerce • 32GB Storage</p>
-                    <a href="payment.html" class="mt-4 block text-center bg-blue-600/20 text-blue-400 py-2 rounded font-bold">Order</a>
+                    <a href="client.html" class="mt-4 block text-center bg-blue-600/20 text-blue-400 py-2 rounded font-bold hover:bg-blue-600/30 transition">Order</a>
                 </div>
             </div>
         </section>
@@ -83,43 +247,63 @@
             <div class="text-center mb-10">
                 <h2 class="text-3xl font-poppins font-bold text-white"><i class="fa-brands fa-discord text-indigo-400 mr-2"></i> Bot Hosting</h2>
                 <p class="text-gray-400">24/7 Uptime for your Discord Bots.</p>
+                <div class="inline-flex items-center gap-1 px-3 py-1 mt-2 rounded-full bg-green-500/20 text-green-400 text-sm">
+                    <i class="fas fa-tag"></i>
+                    <span>20% OFF</span>
+                </div>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
-                <div class="glass-card p-6 rounded-xl border-t-2 border-indigo-500">
+                <div class="glass-card p-6 rounded-xl border-t-2 border-indigo-500 relative">
+                    <span class="discount-badge">20% OFF</span>
                     <h3 class="font-bold text-white">Developer</h3>
-                    <div class="text-2xl font-mono text-indigo-400 my-2">₹120</div>
+                    <div class="flex items-baseline gap-2">
+                        <div class="text-2xl font-mono text-indigo-400 my-2">₹96</div>
+                        <span class="text-sm text-gray-500 line-through">₹120</span>
+                    </div>
                     <ul class="text-xs text-gray-400 space-y-1 mb-4">
                         <li>2GB RAM</li>
                         <li>150% CPU</li>
                     </ul>
-                    <a href="payment.html" class="block text-center bg-indigo-600/20 text-indigo-300 py-2 rounded font-bold">Buy</a>
+                    <a href="client.html" class="block text-center bg-indigo-600/20 text-indigo-300 py-2 rounded font-bold hover:bg-indigo-600/30 transition">Buy</a>
                 </div>
-                 <div class="glass-card p-6 rounded-xl border-t-2 border-indigo-500">
+                 <div class="glass-card p-6 rounded-xl border-t-2 border-indigo-500 relative">
+                    <span class="discount-badge">20% OFF</span>
                     <h3 class="font-bold text-white">Advanced</h3>
-                    <div class="text-2xl font-mono text-indigo-400 my-2">₹200</div>
+                    <div class="flex items-baseline gap-2">
+                        <div class="text-2xl font-mono text-indigo-400 my-2">₹160</div>
+                        <span class="text-sm text-gray-500 line-through">₹200</span>
+                    </div>
                     <ul class="text-xs text-gray-400 space-y-1 mb-4">
                         <li>4GB RAM</li>
                         <li>200% CPU</li>
                     </ul>
-                    <a href="payment.html" class="block text-center bg-indigo-600/20 text-indigo-300 py-2 rounded font-bold">Buy</a>
+                    <a href="client.html" class="block text-center bg-indigo-600/20 text-indigo-300 py-2 rounded font-bold hover:bg-indigo-600/30 transition">Buy</a>
                 </div>
-                 <div class="glass-card p-6 rounded-xl border-t-2 border-indigo-500">
+                 <div class="glass-card p-6 rounded-xl border-t-2 border-indigo-500 relative">
+                    <span class="discount-badge">20% OFF</span>
                     <h3 class="font-bold text-white">Performance</h3>
-                    <div class="text-2xl font-mono text-indigo-400 my-2">₹340</div>
+                    <div class="flex items-baseline gap-2">
+                        <div class="text-2xl font-mono text-indigo-400 my-2">₹272</div>
+                        <span class="text-sm text-gray-500 line-through">₹340</span>
+                    </div>
                     <ul class="text-xs text-gray-400 space-y-1 mb-4">
                         <li>6GB RAM</li>
                         <li>250% CPU</li>
                     </ul>
-                    <a href="payment.html" class="block text-center bg-indigo-600/20 text-indigo-300 py-2 rounded font-bold">Buy</a>
+                    <a href="client.html" class="block text-center bg-indigo-600/20 text-indigo-300 py-2 rounded font-bold hover:bg-indigo-600/30 transition">Buy</a>
                 </div>
-                 <div class="glass-card p-6 rounded-xl border-t-2 border-indigo-500">
+                 <div class="glass-card p-6 rounded-xl border-t-2 border-indigo-500 relative">
+                    <span class="discount-badge">20% OFF</span>
                     <h3 class="font-bold text-white">Ultimate</h3>
-                    <div class="text-2xl font-mono text-indigo-400 my-2">₹660</div>
+                    <div class="flex items-baseline gap-2">
+                        <div class="text-2xl font-mono text-indigo-400 my-2">₹528</div>
+                        <span class="text-sm text-gray-500 line-through">₹660</span>
+                    </div>
                     <ul class="text-xs text-gray-400 space-y-1 mb-4">
                         <li>8GB RAM</li>
                         <li>300% CPU</li>
                     </ul>
-                    <a href="payment.html" class="block text-center bg-indigo-600/20 text-indigo-300 py-2 rounded font-bold">Buy</a>
+                    <a href="client.html" class="block text-center bg-indigo-600/20 text-indigo-300 py-2 rounded font-bold hover:bg-indigo-600/30 transition">Buy</a>
                 </div>
             </div>
         </section>
@@ -127,16 +311,78 @@
         <!-- Domains -->
         <section id="domains" class="animate-fade-in-up">
             <div class="glass-panel p-10 rounded-2xl border border-white/10">
-                <h2 class="text-2xl font-bold text-white mb-8 text-center">Domain Pricing (Yearly)</h2>
+                <div class="text-center mb-8">
+                    <h2 class="text-2xl font-bold text-white mb-2">Domain Pricing (Yearly)</h2>
+                    <div class="inline-flex items-center gap-1 px-3 py-1 mt-2 rounded-full bg-green-500/20 text-green-400 text-sm">
+                        <i class="fas fa-tag"></i>
+                        <span>20% OFF</span>
+                    </div>
+                </div>
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                    <div class="bg-black/40 p-6 rounded-xl text-center hover:bg-black/60 transition"><span class="text-cyan-400 font-bold text-xl">.COM</span> <br> <span class="text-white font-mono">₹799</span></div>
-                    <div class="bg-black/40 p-6 rounded-xl text-center hover:bg-black/60 transition"><span class="text-cyan-400 font-bold text-xl">.NET</span> <br> <span class="text-white font-mono">₹899</span></div>
-                    <div class="bg-black/40 p-6 rounded-xl text-center hover:bg-black/60 transition"><span class="text-cyan-400 font-bold text-xl">.ORG</span> <br> <span class="text-white font-mono">₹849</span></div>
-                    <div class="bg-black/40 p-6 rounded-xl text-center hover:bg-black/60 transition"><span class="text-cyan-400 font-bold text-xl">.ONLINE</span> <br> <span class="text-white font-mono">₹499</span></div>
-                    <div class="bg-black/40 p-6 rounded-xl text-center hover:bg-black/60 transition"><span class="text-cyan-400 font-bold text-xl">.TECH</span> <br> <span class="text-white font-mono">₹699</span></div>
-                    <div class="bg-black/40 p-6 rounded-xl text-center hover:bg-black/60 transition"><span class="text-cyan-400 font-bold text-xl">.STORE</span> <br> <span class="text-white font-mono">₹999</span></div>
-                    <div class="bg-black/40 p-6 rounded-xl text-center hover:bg-black/60 transition"><span class="text-cyan-400 font-bold text-xl">.SITE</span> <br> <span class="text-white font-mono">₹599</span></div>
-                    <div class="bg-black/40 p-6 rounded-xl text-center hover:bg-black/60 transition"><span class="text-cyan-400 font-bold text-xl">.INFO</span> <br> <span class="text-white font-mono">₹599</span></div>
+                    <div class="bg-black/40 p-6 rounded-xl text-center hover:bg-black/60 transition relative">
+                        <span class="discount-badge">20% OFF</span>
+                        <span class="text-amber-400 font-bold text-xl">.COM</span> <br> 
+                        <div class="flex items-center justify-center gap-2">
+                            <span class="text-white font-mono">₹639</span>
+                            <span class="text-gray-500 text-sm line-through">₹799</span>
+                        </div>
+                    </div>
+                    <div class="bg-black/40 p-6 rounded-xl text-center hover:bg-black/60 transition relative">
+                        <span class="discount-badge">20% OFF</span>
+                        <span class="text-amber-400 font-bold text-xl">.NET</span> <br> 
+                        <div class="flex items-center justify-center gap-2">
+                            <span class="text-white font-mono">₹719</span>
+                            <span class="text-gray-500 text-sm line-through">₹899</span>
+                        </div>
+                    </div>
+                    <div class="bg-black/40 p-6 rounded-xl text-center hover:bg-black/60 transition relative">
+                        <span class="discount-badge">20% OFF</span>
+                        <span class="text-amber-400 font-bold text-xl">.ORG</span> <br> 
+                        <div class="flex items-center justify-center gap-2">
+                            <span class="text-white font-mono">₹679</span>
+                            <span class="text-gray-500 text-sm line-through">₹849</span>
+                        </div>
+                    </div>
+                    <div class="bg-black/40 p-6 rounded-xl text-center hover:bg-black/60 transition relative">
+                        <span class="discount-badge">20% OFF</span>
+                        <span class="text-amber-400 font-bold text-xl">.ONLINE</span> <br> 
+                        <div class="flex items-center justify-center gap-2">
+                            <span class="text-white font-mono">₹399</span>
+                            <span class="text-gray-500 text-sm line-through">₹499</span>
+                        </div>
+                    </div>
+                    <div class="bg-black/40 p-6 rounded-xl text-center hover:bg-black/60 transition relative">
+                        <span class="discount-badge">20% OFF</span>
+                        <span class="text-amber-400 font-bold text-xl">.TECH</span> <br> 
+                        <div class="flex items-center justify-center gap-2">
+                            <span class="text-white font-mono">₹559</span>
+                            <span class="text-gray-500 text-sm line-through">₹699</span>
+                        </div>
+                    </div>
+                    <div class="bg-black/40 p-6 rounded-xl text-center hover:bg-black/60 transition relative">
+                        <span class="discount-badge">20% OFF</span>
+                        <span class="text-amber-400 font-bold text-xl">.STORE</span> <br> 
+                        <div class="flex items-center justify-center gap-2">
+                            <span class="text-white font-mono">₹799</span>
+                            <span class="text-gray-500 text-sm line-through">₹999</span>
+                        </div>
+                    </div>
+                    <div class="bg-black/40 p-6 rounded-xl text-center hover:bg-black/60 transition relative">
+                        <span class="discount-badge">20% OFF</span>
+                        <span class="text-amber-400 font-bold text-xl">.SITE</span> <br> 
+                        <div class="flex items-center justify-center gap-2">
+                            <span class="text-white font-mono">₹479</span>
+                            <span class="text-gray-500 text-sm line-through">₹599</span>
+                        </div>
+                    </div>
+                    <div class="bg-black/40 p-6 rounded-xl text-center hover:bg-black/60 transition relative">
+                        <span class="discount-badge">20% OFF</span>
+                        <span class="text-amber-400 font-bold text-xl">.INFO</span> <br> 
+                        <div class="flex items-center justify-center gap-2">
+                            <span class="text-white font-mono">₹479</span>
+                            <span class="text-gray-500 text-sm line-through">₹599</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -145,37 +391,53 @@
         <section id="developer" class="animate-fade-in-up">
             <div class="text-center mb-10">
                 <h2 class="text-3xl font-poppins font-bold text-white"><i class="fa-solid fa-code text-pink-400 mr-2"></i> Pre-made Servers</h2>
+                <div class="inline-flex items-center gap-1 px-3 py-1 mt-2 rounded-full bg-green-500/20 text-green-400 text-sm">
+                    <i class="fas fa-tag"></i>
+                    <span>20% OFF</span>
+                </div>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div class="glass-card p-8 rounded-xl flex flex-col justify-between hover:border-pink-500/50 transition">
+                <div class="glass-card p-8 rounded-xl flex flex-col justify-between hover:border-pink-500/50 transition relative">
+                    <span class="discount-badge">20% OFF</span>
                     <div>
                         <h3 class="text-xl font-bold text-pink-400">Lifesteal SMP</h3>
                         <p class="text-sm text-gray-300 mt-2">Complete setup with heart-stealing mechanics, custom crafting, and spawn.</p>
                     </div>
                     <div class="mt-6 flex justify-between items-center">
-                        <span class="text-2xl font-mono font-bold text-white">₹499</span>
-                        <a href="payment.html" class="bg-pink-600 hover:bg-pink-500 text-white px-6 py-2 rounded-lg font-bold transition">Get It</a>
+                        <div class="flex items-baseline gap-2">
+                            <span class="text-2xl font-mono font-bold text-white">₹399</span>
+                            <span class="text-gray-500 line-through">₹499</span>
+                        </div>
+                        <a href="client.html" class="bg-pink-600 hover:bg-pink-500 text-white px-6 py-2 rounded-lg font-bold transition">Get It</a>
                     </div>
                 </div>
-                <div class="glass-card p-8 rounded-xl flex flex-col justify-between hover:border-pink-500/50 transition">
+                <div class="glass-card p-8 rounded-xl flex flex-col justify-between hover:border-pink-500/50 transition relative">
+                    <span class="discount-badge">20% OFF</span>
                     <div>
                         <h3 class="text-xl font-bold text-pink-400">Bedwars</h3>
                         <p class="text-sm text-gray-300 mt-2">Multi-arena system, shopkeepers, generators, and leaderboards included.</p>
                     </div>
                     <div class="mt-6 flex justify-between items-center">
-                        <span class="text-2xl font-mono font-bold text-white">₹499</span>
-                        <a href="payment.html" class="bg-pink-600 hover:bg-pink-500 text-white px-6 py-2 rounded-lg font-bold transition">Get It</a>
+                        <div class="flex items-baseline gap-2">
+                            <span class="text-2xl font-mono font-bold text-white">₹399</span>
+                            <span class="text-gray-500 line-through">₹499</span>
+                        </div>
+                        <a href="client.html" class="bg-pink-600 hover:bg-pink-500 text-white px-6 py-2 rounded-lg font-bold transition">Get It</a>
                     </div>
                 </div>
             </div>
         </section>
 
     </div>
-    
-    <!-- Mandatory Badge -->
-    <div class="fixed bottom-4 right-4 bg-white text-black font-bold px-4 py-2 rounded-lg shadow-2xl z-[9999] hover:scale-105 transition-transform duration-300 border border-gray-200 text-xs md:text-sm">
-        Powered By Ansh's Gen
-    </div>
-    <script src="script.js"></script>
+
+    <script>
+        // Loading Screen
+        window.addEventListener('load', function() {
+            const loader = document.getElementById('loader');
+            setTimeout(() => {
+                loader.classList.add('hidden');
+            }, 1000);
+        });
+    </script>
 </body>
 </html>
