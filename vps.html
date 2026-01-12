@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VPS Hosting | Spark Hole</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=JetBrains+Mono:wght@400;700&family=Poppins:wght@500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: #05050a;
+            color: #e2e8f0;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .font-inter { font-family: 'Inter', sans-serif; }
+        .font-mono { font-family: 'JetBrains Mono', monospace; }
+        .font-poppins { font-family: 'Poppins', sans-serif; }
+        
+        /* Spark Hole Logo Styling */
+        .spark-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #f59e0b 0%, #f97316 50%, #dc2626 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(245, 158, 11, 0.5);
+        }
+        
+        .spark-icon::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.2) 50%, transparent 70%);
+            animation: sparkle 3s infinite linear;
+        }
+        
+        @keyframes sparkle {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        
+        .hole-effect {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #000;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 2;
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .animate-fade-in-up {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+        
+        .delay-100 { animation-delay: 0.1s; }
+        
+        /* Custom Styling */
+        .glass-card {
+            background: rgba(10, 10, 20, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .glass-card:hover {
+            border-color: rgba(245, 158, 11, 0.3);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(245, 158, 11, 0.1);
+        }
+        
+        .spark-gradient {
+            background: linear-gradient(135deg, #f59e0b 0%, #f97316 50%, #dc2626 100%);
+        }
+        
+        .spark-gradient-text {
+            background: linear-gradient(135deg, #f59e0b 0%, #f97316 50%, #dc2626 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        /* Loading Screen */
+        #loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #05050a;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s, visibility 0.5s;
+        }
+        
+        #loader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+        
+        /* Tab Styling */
+        .tab-link {
+            transition: all 0.3s ease;
+        }
+        
+        .tab-link.active {
+            background: linear-gradient(135deg, #f59e0b 0%, #f97316 50%, #dc2626 100%);
+            color: white;
+            box-shadow: 0 0 20px rgba(245, 158, 11, 0.3);
+        }
+    </style>
+</head>
+<body class="text-gray-200 font-inter">
+
+    <!-- Loading Screen -->
+    <div id="loader">
+        <div class="text-center">
+            <div class="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-amber-500 mx-auto mb-6 shadow-[0_0_20px_rgba(245,158,11,0.5)]"></div>
+            <h2 class="text-2xl md:text-3xl font-poppins font-bold text-white tracking-widest animate-pulse">
+                IGNITING <span class="spark-gradient-text">SPARK HOLE</span>
+            </h2>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 top-0 bg-[#05050a]/90 backdrop-blur-md border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-4 h-20 flex items-center justify-between">
+            <div class="flex items-center gap-2 cursor-pointer" onclick="window.location.href='index.html'">
+                <div class="spark-icon">
+                    <div class="hole-effect"></div>
+                    <i class="fa-solid fa-bolt text-white text-lg relative z-3"></i>
+                </div>
+                <div class="flex items-center">
+                    <span class="font-poppins font-bold text-2xl text-white">SPARK</span>
+                    <span class="font-poppins font-bold text-2xl spark-gradient-text ml-1">HOLE</span>
+                </div>
+            </div>
+            <div class="hidden md:flex space-x-8">
+                <a href="index.html" class="text-gray-300 hover:text-white px-3 py-2 font-medium">Home</a>
+                <a href="minecraft.html" class="text-gray-300 hover:text-amber-400 px-3 py-2 font-medium">Minecraft</a>
+                <a href="vps.html" class="text-amber-400 px-3 py-2 font-medium border-b border-amber-400">VPS</a>
+                <a href="services.html" class="text-gray-300 hover:text-red-400 px-3 py-2 font-medium">Services</a>
+                <a href="client.html" class="bg-white text-black px-4 py-2 rounded-full font-bold hover:scale-105 transition">Client Area</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="pt-32 pb-12 max-w-7xl mx-auto px-4">
+        <div class="text-center mb-10 animate-fade-in-up">
+            <h1 class="text-4xl md:text-5xl font-poppins font-bold text-white mb-4">Virtual Private <span class="spark-gradient-text">Servers</span></h1>
+            <p class="text-gray-400">Root access. Dedicated resources. Instant Provisioning.</p>
+        </div>
+
+        <!-- Tabs -->
+        <div class="flex justify-center gap-4 mb-12 flex-wrap animate-fade-in-up delay-100">
+            <button class="tab-link active px-6 py-3 rounded-lg font-bold spark-gradient text-white shadow-lg shadow-amber-500/30 transition-all" onclick="openTab(event, 'xeon')"><i class="fa-solid fa-microchip mr-2"></i> Intel Xeon</button>
+            <button class="tab-link px-6 py-3 rounded-lg font-bold bg-gray-900/50 text-gray-400 border border-white/5 hover:bg-gray-800 transition-all" onclick="openTab(event, 'platinum')"><i class="fa-solid fa-rocket mr-2"></i> Intel Platinum</button>
+            <button class="tab-link px-6 py-3 rounded-lg font-bold bg-gray-900/50 text-gray-400 border border-white/5 hover:bg-gray-800 transition-all" onclick="openTab(event, 'epyc')"><i class="fa-solid fa-bolt mr-2"></i> AMD EPYC</button>
+        </div>
+
+        <!-- Intel Xeon Tab -->
+        <div id="xeon" class="tab-content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 animate-fade-in-up">
+            <!-- Spark Node 1 -->
+            <div class="glass-card p-6 rounded-xl border-t-2 border-amber-500">
+                <h3 class="text-xl font-bold text-white mb-2">Spark Node 1</h3>
+                <div class="text-3xl font-mono font-bold text-amber-400 mb-4">₹650<span class="text-sm text-gray-400">/mo</span></div>
+                <ul class="space-y-3 text-sm text-gray-300 mb-6">
+                    <li><i class="fa-solid fa-microchip w-5 text-amber-500"></i> 8 vCores</li>
+                    <li><i class="fa-solid fa-memory w-5 text-amber-500"></i> 16GB RAM</li>
+                    <li><i class="fa-solid fa-hard-drive w-5 text-amber-500"></i> 100GB SSD</li>
+                </ul>
+                <a href="client.html" class="block w-full text-center bg-amber-600/20 hover:bg-amber-600 text-amber-400 hover:text-white py-2 rounded font-bold transition">Order Now</a>
+            </div>
+            <!-- Spark Node 2 -->
+            <div class="glass-card p-6 rounded-xl border-t-2 border-amber-500">
+                <h3 class="text-xl font-bold text-white mb-2">Spark Node 2</h3>
+                <div class="text-3xl font-mono font-bold text-amber-400 mb-4">₹850<span class="text-sm text-gray-400">/mo</span></div>
+                <ul class="space-y-3 text-sm text-gray-300 mb-6">
+                    <li><i class="fa-solid fa-microchip w-5 text-amber-500"></i> 12 vCores</li>
+                    <li><i class="fa-solid fa-memory w-5 text-amber-500"></i> 32GB RAM</li>
+                    <li><i class="fa-solid fa-hard-drive w-5 text-amber-500"></i> 180GB SSD</li>
+                </ul>
+                <a href="client.html" class="block w-full text-center bg-amber-600/20 hover:bg-amber-600 text-amber-400 hover:text-white py-2 rounded font-bold transition">Order Now</a>
+            </div>
+            <!-- Spark Node 3 -->
+            <div class="glass-card p-6 rounded-xl border-t-2 border-amber-500">
+                <h3 class="text-xl font-bold text-white mb-2">Spark Node 3</h3>
+                <div class="text-3xl font-mono font-bold text-amber-400 mb-4">₹1250<span class="text-sm text-gray-400">/mo</span></div>
+                <ul class="space-y-3 text-sm text-gray-300 mb-6">
+                    <li><i class="fa-solid fa-microchip w-5 text-amber-500"></i> 16 vCores</li>
+                    <li><i class="fa-solid fa-memory w-5 text-amber-500"></i> 48GB RAM</li>
+                    <li><i class="fa-solid fa-hard-drive w-5 text-amber-500"></i> 256GB SSD</li>
+                </ul>
+                <a href="client.html" class="block w-full text-center bg-amber-600/20 hover:bg-amber-600 text-amber-400 hover:text-white py-2 rounded font-bold transition">Order Now</a>
+            </div>
+            <!-- Spark Node 4 -->
+            <div class="glass-card p-6 rounded-xl border-t-2 border-amber-500">
+                <h3 class="text-xl font-bold text-white mb-2">Spark Node 4</h3>
+                <div class="text-3xl font-mono font-bold text-amber-400 mb-4">₹1600<span class="text-sm text-gray-400">/mo</span></div>
+                <ul class="space-y-3 text-sm text-gray-300 mb-6">
+                    <li><i class="fa-solid fa-microchip w-5 text-amber-500"></i> 20 vCores</li>
+                    <li><i class="fa-solid fa-memory w-5 text-amber-500"></i> 64GB RAM</li>
+                    <li><i class="fa-solid fa-hard-drive w-5 text-amber-500"></i> 256GB SSD</li>
+                </ul>
+                <a href="client.html" class="block w-full text-center bg-amber-600/20 hover:bg-amber-600 text-amber-400 hover:text-white py-2 rounded font-bold transition">Order Now</a>
+            </div>
+        </div>
+
+        <!-- Intel Platinum Tab -->
+        <div id="platinum" class="tab-content hidden grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
+             <div class="glass-card p-6 rounded-xl border-t-2 border-orange-500">
+                <h3 class="text-lg font-bold text-white">Spark</h3>
+                <div class="text-2xl font-mono font-bold text-orange-400 mb-4">₹350</div>
+                <ul class="space-y-2 text-xs text-gray-300 mb-4">
+                    <li>2 vCores</li>
+                    <li>4 GB RAM ECC</li>
+                    <li>20 GB NVMe</li>
+                </ul>
+                <a href="client.html" class="block w-full text-center bg-orange-600/20 hover:bg-orange-600 text-white py-2 rounded font-bold text-sm transition">Order</a>
+            </div>
+            <div class="glass-card p-6 rounded-xl border-t-2 border-orange-500">
+                <h3 class="text-lg font-bold text-white">Blaze</h3>
+                <div class="text-2xl font-mono font-bold text-orange-400 mb-4">₹650</div>
+                <ul class="space-y-2 text-xs text-gray-300 mb-4">
+                    <li>4 vCores</li>
+                    <li>8 GB RAM ECC</li>
+                    <li>40 GB NVMe</li>
+                </ul>
+                <a href="client.html" class="block w-full text-center bg-orange-600/20 hover:bg-orange-600 text-white py-2 rounded font-bold text-sm transition">Order</a>
+            </div>
+            <div class="glass-card p-6 rounded-xl border-t-2 border-orange-500">
+                <h3 class="text-lg font-bold text-white">Titan</h3>
+                <div class="text-2xl font-mono font-bold text-orange-400 mb-4">₹1100</div>
+                <ul class="space-y-2 text-xs text-gray-300 mb-4">
+                    <li>6 vCores</li>
+                    <li>16 GB RAM ECC</li>
+                    <li>60 GB NVMe</li>
+                </ul>
+                <a href="client.html" class="block w-full text-center bg-orange-600/20 hover:bg-orange-600 text-white py-2 rounded font-bold text-sm transition">Order</a>
+            </div>
+            <div class="glass-card p-6 rounded-xl border-t-2 border-orange-500">
+               <h3 class="text-lg font-bold text-white">Guardian</h3>
+               <div class="text-2xl font-mono font-bold text-orange-400 mb-4">₹1450</div>
+               <ul class="space-y-2 text-xs text-gray-300 mb-4">
+                   <li>10 vCores</li>
+                   <li>32 GB RAM ECC</li>
+                   <li>100 GB NVMe</li>
+               </ul>
+               <a href="client.html" class="block w-full text-center bg-orange-600/20 hover:bg-orange-600 text-white py-2 rounded font-bold text-sm transition">Order</a>
+           </div>
+           <div class="glass-card p-6 rounded-xl border-t-2 border-orange-500">
+               <h3 class="text-lg font-bold text-white">Apex</h3>
+               <div class="text-2xl font-mono font-bold text-orange-400 mb-4">₹2500</div>
+               <ul class="space-y-2 text-xs text-gray-300 mb-4">
+                   <li>20 vCores</li>
+                   <li>64 GB RAM ECC</li>
+                   <li>200 GB NVMe</li>
+               </ul>
+               <a href="client.html" class="block w-full text-center bg-orange-600/20 hover:bg-orange-600 text-white py-2 rounded font-bold text-sm transition">Order</a>
+           </div>
+        </div>
+
+        <!-- AMD EPYC Tab -->
+        <div id="epyc" class="tab-content hidden grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="glass-card p-6 rounded-xl border-t-2 border-red-500">
+                <h3 class="text-lg font-bold text-white">EPYC XS</h3>
+                <div class="text-2xl font-mono font-bold text-red-400 mb-2">₹400</div>
+                <p class="text-xs text-gray-400 mb-3">2 vCores • 6GB RAM</p>
+                <a href="client.html" class="block w-full text-center bg-red-600/20 hover:bg-red-600 text-white py-2 rounded font-bold text-sm transition">Order</a>
+            </div>
+            <div class="glass-card p-6 rounded-xl border-t-2 border-red-500">
+                <h3 class="text-lg font-bold text-white">EPYC S</h3>
+                <div class="text-2xl font-mono font-bold text-red-400 mb-2">₹600</div>
+                <p class="text-xs text-gray-400 mb-3">2 vCores • 8GB RAM</p>
+                <a href="client.html" class="block w-full text-center bg-red-600/20 hover:bg-red-600 text-white py-2 rounded font-bold text-sm transition">Order</a>
+            </div>
+            <div class="glass-card p-6 rounded-xl border-t-2 border-red-500">
+                <h3 class="text-lg font-bold text-white">EPYC L</h3>
+                <div class="text-2xl font-mono font-bold text-red-400 mb-2">₹1000</div>
+                <p class="text-xs text-gray-400 mb-3">6 vCores • 16GB RAM</p>
+                <a href="client.html" class="block w-full text-center bg-red-600/20 hover:bg-red-600 text-white py-2 rounded font-bold text-sm transition">Order</a>
+            </div>
+            <div class="glass-card p-6 rounded-xl border-t-2 border-red-500">
+                <h3 class="text-lg font-bold text-white">EPYC 3XL</h3>
+                <div class="text-2xl font-mono font-bold text-red-400 mb-2">₹2600</div>
+                <p class="text-xs text-gray-400 mb-3">12 vCores • 64GB RAM</p>
+                <a href="client.html" class="block w-full text-center bg-red-600/20 hover:bg-red-600 text-white py-2 rounded font-bold text-sm transition">Order</a>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // Loading Screen
+        window.addEventListener('load', function() {
+            const loader = document.getElementById('loader');
+            setTimeout(() => {
+                loader.classList.add('hidden');
+            }, 1000);
+        });
+
+        // Tab Switching Function
+        function openTab(evt, tabName) {
+            // Hide all tab content
+            const tabContents = document.getElementsByClassName("tab-content");
+            for (let i = 0; i < tabContents.length; i++) {
+                tabContents[i].style.display = "none";
+            }
+            
+            // Remove active class from all tab links
+            const tabLinks = document.getElementsByClassName("tab-link");
+            for (let i = 0; i < tabLinks.length; i++) {
+                tabLinks[i].classList.remove("active");
+                tabLinks[i].classList.remove("spark-gradient");
+                tabLinks[i].classList.add("bg-gray-900/50");
+                tabLinks[i].classList.add("text-gray-400");
+            }
+            
+            // Show the current tab and add active class
+            document.getElementById(tabName).style.display = "grid";
+            evt.currentTarget.classList.add("active");
+            evt.currentTarget.classList.add("spark-gradient");
+            evt.currentTarget.classList.remove("bg-gray-900/50");
+            evt.currentTarget.classList.remove("text-gray-400");
+            evt.currentTarget.classList.add("text-white");
+        }
+
+        // Initialize first tab as active
+        document.addEventListener('DOMContentLoaded', function() {
+            // Show Xeon tab by default
+            document.getElementById('xeon').style.display = 'grid';
+        });
+    </script>
+</body>
+</html>
