@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minecraft Hosting | Spark Hole</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=JetBrains+Mono:wght@400;700&family=Poppins:wght@500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: #05050a;
+            color: #e2e8f0;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .font-inter { font-family: 'Inter', sans-serif; }
+        .font-mono { font-family: 'JetBrains Mono', monospace; }
+        .font-poppins { font-family: 'Poppins', sans-serif; }
+        
+        /* Spark Hole Logo Styling */
+        .spark-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #f59e0b 0%, #f97316 50%, #dc2626 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(245, 158, 11, 0.5);
+        }
+        
+        .spark-icon::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.2) 50%, transparent 70%);
+            animation: sparkle 3s infinite linear;
+        }
+        
+        @keyframes sparkle {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        
+        .hole-effect {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #000;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 2;
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .animate-fade-in-up {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+        
+        .animate-float {
+            animation: float 4s ease-in-out infinite;
+        }
+        
+        .delay-100 { animation-delay: 0.1s; }
+        .delay-200 { animation-delay: 0.2s; }
+        .delay-300 { animation-delay: 0.3s; }
+        
+        /* Custom Styling */
+        .glass-card {
+            background: rgba(10, 10, 20, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .glass-card:hover {
+            border-color: rgba(245, 158, 11, 0.3);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(245, 158, 11, 0.1);
+        }
+        
+        .spark-gradient {
+            background: linear-gradient(135deg, #f59e0b 0%, #f97316 50%, #dc2626 100%);
+        }
+        
+        .spark-gradient-text {
+            background: linear-gradient(135deg, #f59e0b 0%, #f97316 50%, #dc2626 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        /* Loading Screen */
+        #loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #05050a;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s, visibility 0.5s;
+        }
+        
+        #loader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+    </style>
+</head>
+<body class="text-gray-200 font-inter">
+    
+    <!-- Loading Screen -->
+    <div id="loader">
+        <div class="text-center">
+            <div class="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-amber-500 mx-auto mb-6 shadow-[0_0_20px_rgba(245,158,11,0.5)]"></div>
+            <h2 class="text-2xl md:text-3xl font-poppins font-bold text-white tracking-widest animate-pulse">
+                IGNITING <span class="spark-gradient-text">SPARK HOLE</span>
+            </h2>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 top-0 bg-[#05050a]/90 backdrop-blur-md border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex-shrink-0 flex items-center gap-2 cursor-pointer" onclick="window.location.href='index.html'">
+                    <div class="spark-icon">
+                        <div class="hole-effect"></div>
+                        <i class="fa-solid fa-bolt text-white text-lg relative z-3"></i>
+                    </div>
+                    <div class="flex items-center">
+                        <span class="font-poppins font-bold text-2xl text-white">SPARK</span>
+                        <span class="font-poppins font-bold text-2xl spark-gradient-text ml-1">HOLE</span>
+                    </div>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="index.html" class="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Home</a>
+                        <a href="minecraft.html" class="text-amber-400 px-3 py-2 rounded-md text-sm font-medium border-b border-amber-400">Minecraft</a>
+                        <a href="vps.html" class="text-gray-300 hover:text-orange-400 px-3 py-2 rounded-md text-sm font-medium">VPS</a>
+                        <a href="services.html" class="text-gray-300 hover:text-red-400 px-3 py-2 rounded-md text-sm font-medium">Services</a>
+                        <a href="client.html" class="bg-white text-black px-4 py-2 rounded-full font-bold hover:scale-105 transition">Client Area</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="pt-32 pb-12 max-w-7xl mx-auto px-4">
+        <div class="text-center mb-16 animate-fade-in-up">
+            <h1 class="text-4xl md:text-6xl font-poppins font-bold text-white mb-4">Minecraft <span class="spark-gradient-text">Hosting</span></h1>
+            <p class="text-gray-400 max-w-2xl mx-auto text-lg">
+                Premium Minecraft hosting with blazing-fast performance and 24/7 support.
+            </p>
+        </div>
+
+        <!-- Plans Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            
+            <!-- 1 GB Plan -->
+            <div class="glass-card p-6 rounded-2xl border-t-4 border-green-500 hover:scale-[1.02] transition-transform relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-24 h-24 bg-green-500/10 rounded-bl-full -mr-4 -mt-4"></div>
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="w-16 h-16 flex items-center justify-center bg-green-500/20 rounded-xl animate-float">
+                        <i class="fa-solid fa-leaf text-green-400 text-3xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-white">1 GB Plan</h3>
+                        <span class="text-xs text-green-400 uppercase font-bold tracking-wider">Entry Level</span>
+                    </div>
+                </div>
+                <div class="text-3xl font-mono font-bold text-white mb-2">₹20<span class="text-sm text-gray-400 font-sans">/mo</span></div>
+                <ul class="space-y-3 text-sm text-gray-300 mb-8">
+                    <li class="flex items-center gap-3"><i class="fa-solid fa-memory text-green-400"></i> 1 GB RAM</li>
+                    <li class="flex items-center gap-3"><i class="fa-solid fa-hard-drive text-green-400"></i> 5 GB NVMe SSD</li>
+                    <li class="flex items-center gap-3"><i class="fa-solid fa-microchip text-green-400"></i> 50% CPU</li>
+                </ul>
+                <a href="client.html" class="block w-full text-center bg-green-600 hover:bg-green-500 text-white py-3 rounded-xl font-bold transition shadow-lg shadow-green-500/20">Order Now</a>
+            </div>
+
+            <!-- 2 GB Plan -->
+            <div class="glass-card p-6 rounded-2xl border-t-4 border-blue-400 hover:scale-[1.02] transition-transform relative overflow-hidden">
+                 <div class="absolute top-0 right-0 w-24 h-24 bg-blue-400/10 rounded-bl-full -mr-4 -mt-4"></div>
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="w-16 h-16 flex items-center justify-center bg-blue-400/20 rounded-xl animate-float">
+                        <i class="fa-solid fa-cube text-blue-400 text-3xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-white">2 GB Plan</h3>
+                        <span class="text-xs text-blue-400 uppercase font-bold tracking-wider">Basic</span>
+                    </div>
+                </div>
+                <div class="text-3xl font-mono font-bold text-white mb-2">₹40<span class="text-sm text-gray-400 font-sans">/mo</span></div>
+                <ul class="space-y-3 text-sm text-gray-300 mb-8">
+                    <li class="flex items-center gap-3"><i class="fa-solid fa-memory text-blue-400"></i> 2 GB RAM</li>
+                    <li class="flex items-center gap-3"><i class="fa-solid fa-hard-drive text-blue-400"></i> 5 GB NVMe SSD</li>
+                    <li class="flex items-center gap-3"><i class="fa-solid fa-microchip text-blue-400"></i> 75% CPU</li>
+                </ul>
+                <a href="client.html" class="block w-full text-center bg-blue-500 hover:bg-blue-400 text-white py-3 rounded-xl font-bold transition shadow-lg shadow-blue-500/20">Order Now</a>
+            </div>
+
+            <!-- 4 GB Plan -->
+            <div class="glass-card p-6 rounded-2xl border-t-4 border-purple-400 hover:scale-[1.02] transition-transform relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-24 h-24 bg-purple-400/10 rounded-bl-full -mr-4 -mt-4"></div>
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="w-16 h-16 flex items-center justify-center bg-purple-400/20 rounded-xl animate-float">
+                        <i class="fa-solid fa-gem text-purple-400 text-3xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-white">4 GB Plan</h3>
+                        <span class="text-xs text-purple-400 uppercase font-bold tracking-wider">Standard</span>
+                    </div>
+                </div>
+                <div class="text-3xl font-mono font-bold text-white mb-2">₹80<span class="text-sm text-gray-400 font-sans">/mo</span></div>
+                <ul class="space-y-3 text-sm text-gray-300 mb-8">
+                    <li class="flex items-center gap-3"><i class="fa-solid fa-memory text-purple-400"></i> 4 GB RAM</li>
+                    <li class="flex items-center gap-3"><i class="fa-solid fa-hard-drive text-purple-400"></i> 10 GB NVMe SSD</li>
+                    <li class="flex items-center gap-3"><i class="fa-solid fa-microchip text-purple-400"></i> 100% CPU</li>
+                </ul>
+                <a href="client.html" class="block w-full text-center bg-purple-600 hover:bg-purple-500 text-white py-3 rounded-xl font-bold transition shadow-lg shadow-purple-500/20">Order Now</a>
+            </div>
+
+            <!-- 6 GB Plan -->
+            <div class="glass-card p-6 rounded-2xl border-t-4 border-amber-400 hover:scale-[1.02] transition-transform relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-24 h-24 bg-amber-400/10 rounded-bl-full -mr-4 -mt-4"></div>
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="w-16 h-16 flex items-center justify-center bg-amber-400/20 rounded-xl animate-float">
+                        <i class="fa-solid fa-sun text-amber-400 text-3xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-white">6 GB Plan</h3>
+                        <span class="text-xs text-amber-400 uppercase font-bold tracking-wider">Advanced</span>
+                    </div>
+                </div>
+                <div class="text-3xl font-mono font-bold text-white mb-2">₹120<span class="text-sm text-gray-400 font-sans">/mo</span></div>
+                <ul class="space-y-3 text-sm text-gray-300 mb-8">
+                    <li class="flex items-center gap-3"><i class="fa-solid fa-memory text-amber-400"></i> 6 GB RAM</li>
+                    <li class="flex items-center gap-3"><i class="fa-solid fa-hard-drive text-amber-400"></i> 15 GB NVMe SSD</li>
+                    <li class="flex items-center gap-3"><i class="fa-solid fa-microchip text-amber-400"></i> 150% CPU</li>
+                </ul>
+                <a href="client.html" class="block w-full text-center bg-amber-500 hover:bg-amber-400 text-black py-3 rounded-xl font-bold transition shadow-lg shadow-amber-500/20">Order Now</a>
+            </div>
+
+            <!-- 8 GB Plan -->
+            <div class="glass-card p-6 rounded-2xl border-t-4 border-red-400 hover:scale-[1.02] transition-transform relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-24 h-24 bg-red-400/10 rounded-bl-full -mr-4 -mt-4"></div>
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="w-16 h-16 flex items-center justify-center bg-red-400/20 rounded-xl animate-float">
+                        <i class="fa-solid fa-fire text-red-400 text-3xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-white">8 GB Plan</h3>
+                        <span class="text-xs text-red-400 uppercase font-bold tracking-wider">Pro</span>
+                    </div>
+                </div>
+                <div class="text-3xl font-mono font-bold text-white mb-2">₹160<span class="text-sm text-gray-400 font-sans">/mo</span></div>
+                <ul class="space-y-3 text-sm text-gray-300 mb-8">
+                    <li class="flex items-center gap-3"><i class="fa-solid fa-memory text-red-400"></i> 8 GB RAM</li>
+                    <li class="flex items-center gap-3"><i class="fa-solid fa-hard-drive text-red-400"></i> 30 GB NVMe SSD</li>
+                    <li class="flex items-center gap-3"><i class="fa-solid fa-microchip text-red-400"></i> 200% CPU</li>
+                </ul>
+                <a href="client.html" class="block w-full text-center bg-red-500 hover:bg-red-400 text-white py-3 rounded-xl font-bold transition shadow-lg shadow-red-500/20">Order Now</a>
+            </div>
+
+            <!-- 12 GB Plan -->
+            <div class="glass-card p-6 rounded-2xl border-t-4 border-cyan-400 hover:scale-[1.02] transition-transform relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-24 h-24 bg-cyan-400/10 rounded-bl-full -mr-4 -mt-4"></div>
+                <div class="flex items-center gap-4 mb-6">
+                    <div class="w-16 h-16 flex items-center justify-center bg-cyan-400/20 rounded-xl animate-float">
+                        <i class="fa-solid fa-snowflake text-cyan-400 text-3xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-white">12 GB Plan</h3>
+                        <span class="text-xs text-cyan-400 uppercase font-bold tracking-wider">Elite</span>
+                    </div>
+                </div>
+                <div class="text-3xl font-mono font-bold text-white mb-2">₹240<span class="text-sm text-gray-400 font-sans">/mo</span></div>
+                <ul class="space-y-3 text-sm text-gray-300 mb-8">
+                    <li class="flex items-center gap-3"><i class="fa-solid fa-memory text-cyan-400"></i> 12 GB RAM</li>
+                    <li class="flex items-center gap-3"><i class="fa-so
